@@ -7,6 +7,9 @@ import Authentication from './components/Authentication';
 import UserProfile from './components/UserProfile';
 
 
+
+
+
 function App() {
   const isAuth = useSelector(state => state.auth.isAuthenticated);
 
