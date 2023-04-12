@@ -24,8 +24,9 @@ const counterSlice = createSlice({
   },
 });
 
+const tok=(localStorage.getItem('token')==='')
 const initialAuthState = {
-  isAuthenticated: false,
+  isAuthenticated:!(tok) ,
 };
 
 const authSlice = createSlice({
@@ -35,8 +36,11 @@ const authSlice = createSlice({
     login(state,action) {
 
       const cred=action.payload;
-      if(cred.password===localStorage.getItem('password') && cred.email===localStorage.getItem('email'))
+      
+      console.log(cred.token);
+      if(cred.password===localStorage.getItem('password') && cred.email===localStorage.getItem('email') && !(cred.token===''))
       {
+        
       state.isAuthenticated = true;
       }
       else{
@@ -46,6 +50,7 @@ const authSlice = createSlice({
       }
     },
     logout(state) {
+      localStorage.setItem('token','');
       state.isAuthenticated = false;
     },
   },
@@ -63,7 +68,9 @@ const signupSlice=createSlice({
       
       const creds=action.payload;
       // console.log(creds)
+      state.isSignUp=true;
       // localStorage.setItem('userDetails',JSON.stringify(creds));
+      localStorage.setItem("token",JSON.stringify(creds.token));
       localStorage.setItem('email',creds.email);
       localStorage.setItem('password',creds.password);
       // state.isSignUp=true;
