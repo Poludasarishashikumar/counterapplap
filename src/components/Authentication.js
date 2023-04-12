@@ -34,36 +34,7 @@ const Authentication = () => {
     email:email,
     password:password
   };
-  const simplHandler=useCallback(async (event)=>{
-     event.preventDefault();
-    // localStorage.setItem("token",JSON.stringify(det));
-  //   axios.post('https://login-4da16-default-rtdb.firebaseio.com/login.json',det).then(response => {
-  //     //get token from response
-  //     const token  =  response.data.token;
-  //    console.log(token);
-  //     //set JWT token to local
-
-  //     //set token to axios common header
-  //     // setAuthToken(token);
-  // })
-  const res=await fetch('https://login-4da16-default-rtdb.firebaseio.com/login.json',{
-  method:'POST',
-  body:JSON.stringify(det),
-  headers:{
-    'Content-Type':'application/json'
-  }
-});
-const data=await res.json();
-console.log(localStorage.getItem('token'));
-// .then(response => {
-//   const token  =  response.data.token;
-  // localStorage.setItem("token",JSON.stringify(data));
-
-
-// })
-//   .catch(err => console.log(err));
-    
-  });
+  
   const signUp=async (event)=>{
     event.preventDefault();
     const det=[
@@ -114,7 +85,7 @@ const btnTxt=signupForm?'Submit':'Sign Up';
           {!signupForm &&<button onClick={loginHandler}>Login</button>}
           {!signupForm &&<button onClick={signUpHandler}>{btnTxt}</button>}
           {signupForm &&<button onClick={signUp}>{btnTxt}</button>}
-          <button onClick={simplHandler}>siple</button>
+          
         </form>
       </section>
     </main>
